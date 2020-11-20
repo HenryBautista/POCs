@@ -9,6 +9,7 @@ namespace PokeStore.Models
         public string Type { get; set; }
 
         public int Level { get; set; }
-
+        public string PhotoUrl { get; set; }
+        
     }
 }
