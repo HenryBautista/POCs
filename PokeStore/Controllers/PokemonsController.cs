@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PokeStore.Controllers
 {
-    public class PokemonController : Controller
+    public class PokemonsController : Controller
     {
-        public PokemonController()
+        public PokemonsController()
         {
             
         }
