@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PokeStore.Data;
 using Microsoft.EntityFrameworkCore;
+using PokeStore.Data.Repos;
 
 namespace PokeStore.Web
 {
@@ -28,6 +29,7 @@ namespace PokeStore.Web
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationContext>(options =>
                     options.UseSqlite(Configuration.GetConnectionString("ApplicationContext")));
+            services.AddScoped<IPokemonRepository, PokemonRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
