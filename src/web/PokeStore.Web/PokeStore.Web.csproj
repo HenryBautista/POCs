@@ -15,6 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\model\PokeStore.Model\PokeStore.Model.csproj" />
+    <ProjectReference Include="..\..\model\PokeStore.Entities\PokeStore.Entities.csproj" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PokeStore.Model;
+using PokeStore.Entities;
 
 namespace PokeStore.Web.Data
 {
