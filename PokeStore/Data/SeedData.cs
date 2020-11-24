@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PokeStore.Models;
+using PokeStore.Web.Models;
 
-namespace PokeStore.Data
+namespace PokeStore.Web.Data
 {
     public static class SeedData
     {

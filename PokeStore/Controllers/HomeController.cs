@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PokeStore.Models;
+using PokeStore.Web.Models;
 
-namespace PokeStore.Controllers
+namespace PokeStore.Web.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace PokeStore.Models
+namespace PokeStore.Web.Models
 {
     public class ErrorViewModel
     {

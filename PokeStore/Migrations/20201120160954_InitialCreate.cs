@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PokeStore.Migrations
+namespace PokeStore.Web.Migrations
 {
     public partial class InitialCreate : Migration
     {

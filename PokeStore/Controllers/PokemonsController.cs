@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PokeStore.Data;
-using PokeStore.Models;
+using PokeStore.Web.Data;
+using PokeStore.Web.Models;
 
-namespace PokeStore.Controllers
+namespace PokeStore.Web.Controllers
 {
     public class PokemonsController : Controller
     {   
@@ -24,9 +24,14 @@ namespace PokeStore.Controllers
             return View(data);
         }
 
-        public IActionResult Details(int Id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            Pokemon pokemon = await _context.Pokemons.FindAsync(id);
+            if(pokemon == null)
+            {
+                return NotFound();
+            }
+            return View(pokemon);
         }
 
         public async Task<IActionResult> Edit(int id)

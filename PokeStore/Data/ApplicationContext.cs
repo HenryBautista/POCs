@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using PokeStore.Models;
+using PokeStore.Web.Models;
 
-namespace PokeStore.Data
+namespace PokeStore.Web.Data
 {
     public class ApplicationContext : DbContext
     {

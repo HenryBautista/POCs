@@ -1,0 +1,21 @@
+@model PokeStore.Web.Models.Pokemon
+@{
+    ViewData["Titie"] = "Pokemon Details";
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="container-fluid">
+            <div class="row">
+                <h3>@Html.DisplayFor(model => model.Name)</h3>
+            </div>
+            <div class="row">
+                <h4>Level: @Html.DisplayFor(model => model.Level)</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to Store</a>
+</div>

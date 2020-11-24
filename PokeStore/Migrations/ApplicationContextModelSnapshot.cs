@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PokeStore.Data;
+using PokeStore.Web.Data;
 
-namespace PokeStore.Migrations
+namespace PokeStore.Web.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
     partial class ApplicationContextModelSnapshot : ModelSnapshot

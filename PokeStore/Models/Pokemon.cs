@@ -1,4 +1,4 @@
-namespace PokeStore.Models
+namespace PokeStore.Web.Models
 {
     public class Pokemon
     {
