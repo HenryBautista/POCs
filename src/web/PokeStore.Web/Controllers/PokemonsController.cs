@@ -5,29 +5,29 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PokeStore.Data;
+using PokeStore.Data.Repos;
 using PokeStore.Entities;
 
 namespace PokeStore.Web.Controllers
 {
     public class PokemonsController : Controller
-    {   
-        private readonly ApplicationContext _context; 
-        public PokemonsController(ApplicationContext context)
+    {
+        private readonly IPokemonRepository _repository;
+        public PokemonsController(IPokemonRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<IActionResult> Index()
         {
-            List<Pokemon> data = await _context.Pokemons.ToListAsync();
-
+            List<Pokemon> data = await _repository.GetAll();
             return View(data);
         }
 
         public async Task<IActionResult> Details(int id)
         {
-            Pokemon pokemon = await _context.Pokemons.FindAsync(id);
-            if(pokemon == null)
+            Pokemon pokemon = await _repository.GetOne(id);
+            if (pokemon == null)
             {
                 return NotFound();
             }
@@ -36,8 +36,8 @@ namespace PokeStore.Web.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            Pokemon pokemon = await _context.Pokemons.FindAsync(id);
-            if(pokemon == null)
+            Pokemon pokemon = await _repository.GetOne(id);
+            if (pokemon == null)
             {
                 return NotFound();
             }
@@ -49,19 +49,10 @@ namespace PokeStore.Web.Controllers
         {
             try
             {
-                Pokemon pokemonData = await _context.Pokemons.FindAsync(id);
-                if(pokemon == null)
-                {
-                    return NotFound();
-                }
-
-                pokemonData.Name = pokemon.Name;
-                pokemonData.Level = pokemon.Level;
-                
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");                
+                await _repository.Edit(id, pokemon);
+                return RedirectToAction("Index");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -77,15 +68,14 @@ namespace PokeStore.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> New(Pokemon pokemon)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(pokemon);
-                    await _context.SaveChangesAsync();    
+                    await _repository.Save(pokemon);
                     return RedirectToAction("Index");
-                } 
-                catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     return BadRequest();
                 }
@@ -99,16 +89,15 @@ namespace PokeStore.Web.Controllers
         {
             try
             {
-                Pokemon pokemon = await _context.Pokemons.FindAsync(id);
-                if(pokemon == null)
+                Pokemon pokemon = await _repository.GetOne(id);
+                if (pokemon == null)
                 {
                     return NotFound();
                 }
-                _context.Pokemons.Remove(pokemon);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");                
+                await _repository.Remove(id);
+                return RedirectToAction("Index");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -118,8 +107,8 @@ namespace PokeStore.Web.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            Pokemon pokemon = await _context.Pokemons.FindAsync(id);
-            if(pokemon ==null)
+            Pokemon pokemon = await _repository.GetOne(id);
+            if (pokemon == null)
             {
                 return NotFound();
             }
