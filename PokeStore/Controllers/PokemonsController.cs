@@ -1,22 +1,124 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PokeStore.Data;
+using PokeStore.Models;
 
 namespace PokeStore.Controllers
 {
     public class PokemonsController : Controller
-    {
-        public PokemonsController()
+    {   
+        private readonly ApplicationContext _context; 
+        public PokemonsController(ApplicationContext context)
         {
-            
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<Pokemon> data = await _context.Pokemons.ToListAsync();
+
+            return View(data);
         }
 
         public IActionResult Details(int Id)
         {
             return View();
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            Pokemon pokemon = await _context.Pokemons.FindAsync(id);
+            if(pokemon == null)
+            {
+                return NotFound();
+            }
+            return View(pokemon);
+        }
+
+        [HttpPost, ActionName("Edit")]
+        public async Task<IActionResult> EditPokemon(int id, Pokemon pokemon)
+        {
+            try
+            {
+                Pokemon pokemonData = await _context.Pokemons.FindAsync(id);
+                if(pokemon == null)
+                {
+                    return NotFound();
+                }
+
+                pokemonData.Name = pokemon.Name;
+                pokemonData.Level = pokemon.Level;
+                
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");                
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult New()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> New(Pokemon pokemon)
+        {
+            if(!ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(pokemon);
+                    await _context.SaveChangesAsync();    
+                    return RedirectToAction("Index");
+                } 
+                catch(Exception ex)
+                {
+                    return BadRequest();
+                }
+            }
+
+            return View(pokemon);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeletePokemon(int id)
+        {
+            try
+            {
+                Pokemon pokemon = await _context.Pokemons.FindAsync(id);
+                if(pokemon == null)
+                {
+                    return NotFound();
+                }
+                _context.Pokemons.Remove(pokemon);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");                
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return View();
+        }
+
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            Pokemon pokemon = await _context.Pokemons.FindAsync(id);
+            if(pokemon ==null)
+            {
+                return NotFound();
+            }
+            return View(pokemon);
         }
     }
 }
