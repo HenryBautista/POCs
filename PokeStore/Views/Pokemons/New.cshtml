@@ -1,0 +1,29 @@
+@model PokeStore.Models.Pokemon
+
+@{
+    ViewData["Title"] = "New Pokemon"; 
+}
+<h3>Pokemon</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="New" >
+            <input type="hidden" asp-for="Id"/>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Level" class="control-label"></label>
+                <input asp-for="Level" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Store</a>
+</div>
