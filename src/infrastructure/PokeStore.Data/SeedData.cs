@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PokeStore.Entities;
 
-namespace PokeStore.Web.Data
+namespace PokeStore.Data
 {
     public static class SeedData
     {
