@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using PokeStore.Web.Models;
+using PokeStore.Model;
 
 namespace PokeStore.Web.Data
 {

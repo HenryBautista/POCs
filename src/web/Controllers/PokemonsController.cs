@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PokeStore.Web.Data;
-using PokeStore.Web.Models;
+using PokeStore.Model;
 
 namespace PokeStore.Web.Controllers
 {
