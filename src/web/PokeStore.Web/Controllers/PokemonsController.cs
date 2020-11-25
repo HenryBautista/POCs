@@ -24,6 +24,37 @@ namespace PokeStore.Web.Controllers
             return View(data);
         }
 
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeletePokemon(int id)
+        {
+            try
+            {
+                Pokemon pokemon = await _repository.GetOne(id);
+                if (pokemon == null)
+                {
+                    return NotFound();
+                }
+                await _repository.Remove(id);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return View();
+        }
+
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            Pokemon pokemon = await _repository.GetOne(id);
+            if (pokemon == null)
+            {
+                return NotFound();
+            }
+            return View(pokemon);
+        }
+
         public async Task<IActionResult> Details(int id)
         {
             Pokemon pokemon = await _repository.GetOne(id);
@@ -84,35 +115,5 @@ namespace PokeStore.Web.Controllers
             return View(pokemon);
         }
 
-        [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeletePokemon(int id)
-        {
-            try
-            {
-                Pokemon pokemon = await _repository.GetOne(id);
-                if (pokemon == null)
-                {
-                    return NotFound();
-                }
-                await _repository.Remove(id);
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-
-            }
-            return View();
-        }
-
-
-        public async Task<IActionResult> Delete(int id)
-        {
-            Pokemon pokemon = await _repository.GetOne(id);
-            if (pokemon == null)
-            {
-                return NotFound();
-            }
-            return View(pokemon);
-        }
     }
 }
