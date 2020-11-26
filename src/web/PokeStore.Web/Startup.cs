@@ -11,7 +11,7 @@ using Microsoft.Extensions.Hosting;
 using PokeStore.Data;
 using Microsoft.EntityFrameworkCore;
 using PokeStore.Data.Repos;
-
+using FluentValidation.AspNetCore;
 namespace PokeStore.Web
 {
     public class Startup
@@ -26,7 +26,8 @@ namespace PokeStore.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddFluentValidation();
             services.AddDbContext<ApplicationContext>(options =>
                     options.UseSqlite(Configuration.GetConnectionString("ApplicationContext")));
             services.AddScoped<IPokemonRepository, PokemonRepository>();
