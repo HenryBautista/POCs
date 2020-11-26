@@ -37,6 +37,8 @@ namespace PokeStore.Data.Repos
 
             pokemon.Name = data.Name;
             pokemon.Level = data.Level;
+            pokemon.Type = data.Type;
+            pokemon.PhotoUrl = data.PhotoUrl;
             await _context.SaveChangesAsync();
             return pokemon;
         }
