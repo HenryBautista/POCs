@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PokeStore.Entities;
+using PokeStore.Entities.Enums;
 
 namespace PokeStore.Data
 {
@@ -24,21 +26,25 @@ namespace PokeStore.Data
                     Id= 1,
                     Name = "Pikachu",
                     Level = 90,
+                    Type = PokemonType.Electric,
                     },
                     new Pokemon {
                         Id= 2,
                         Name = "Bulbasur",
                         Level = 91,
+                        Type = PokemonType.Grass,
                     },
                     new Pokemon {
                         Id= 3,
                         Name = "Squirtel",
                         Level = 95,
+                        Type = PokemonType.Water,
                     },
                     new Pokemon {
                         Id= 4,
                         Name = "Charmander",
                         Level = 100,
+                        Type = PokemonType.Fire,
                     }
                 );
                 context.SaveChanges();
