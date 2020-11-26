@@ -433,4 +433,4 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 PokeStore/.vscode/tasks.json
 PokeStore/.vscode/launch.json
-PokeStore/MvcMovie.db
+src/web/PokeStore.Web/MvcMovie.db
