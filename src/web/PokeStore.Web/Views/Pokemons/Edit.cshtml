@@ -1,5 +1,4 @@
 @model PokeStore.Entities.Pokemon
-@using PokeStore.Entities.Enums
 @{
     ViewData["Title"] = "Edit Pokemon";
 }
@@ -8,29 +7,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit" >
-            <input type="hidden" asp-for="Id"/>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="Level" class="control-label"></label>
-                <input asp-for="Level" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <select asp-for="Type" asp-items="Html.GetEnumSelectList<PokemonType>()">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhotoUrl" class="control-label"></label>
-                <input asp-for="PhotoUrl" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary"/>
-            </div>
-        </form>
+            <vc:pokemon-form action="Edit"></vc:pokemon-form>
     </div>
 </div>
 
