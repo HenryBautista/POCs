@@ -1,0 +1,41 @@
+@model IEnumerable<PokeStore.Entities.Pokemon>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Id)
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Type)
+            </th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pokemon in Model)
+        {
+            <tr>
+                <td>@pokemon.Id</td>
+                <td>
+                    <img src="@pokemon.PhotoUrl" width="80px" />
+                </td>
+                <td>@pokemon.Name</td>
+                <td>@pokemon.Level</td>
+                <td>@pokemon.Type</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@pokemon.Id" class="btn btn-info">Details</a>
+                    <a asp-action="Edit" asp-route-id="@pokemon.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@pokemon.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
