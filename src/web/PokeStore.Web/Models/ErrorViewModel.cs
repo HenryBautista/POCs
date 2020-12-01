@@ -1,5 +1,3 @@
-using System;
-
 namespace PokeStore.Web.Models
 {
     public class ErrorViewModel

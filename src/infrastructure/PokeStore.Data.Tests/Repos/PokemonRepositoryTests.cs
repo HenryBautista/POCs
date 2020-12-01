@@ -1,10 +1,9 @@
 using PokeStore.Entities;
-using PokeStore.Data;
 using PokeStore.Data.Repos;
-using Xunit;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace PokeStore.Data.Tests.Repos
 {
